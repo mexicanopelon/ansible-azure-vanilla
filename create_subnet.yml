@@ -1,9 +1,9 @@
 - name: Add a subnet in the VNET
   azure.azcollection.azure_rm_subnet:
-    name: abs-az-subnet
-    resource_group: abs-az-resource-group
-    address_prefix: 10.0.1.0/24
-    virtual_network: abs-az-vnet
+    name: "{{ subnet-name }}"
+    resource_group: "{{ resource-group }}"
+    address_prefix: "{{ addr-prefix }}"
+    virtual_network: "{{ vnet }}"
   register: subnet
 - debug:
     var: subnet
