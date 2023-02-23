@@ -15,16 +15,16 @@
   - name: Create gateway subnet
     include_tasks: create_subnet.yml
     vars:
-      subnet-name: abs_az_app_gateway_subnet
-      resource-group: abs-az-resource-group
-      addr-prefix: 10.0.1.0/24
+      subnet_name: abs_az_app_gateway_subnet
+      resource_gp: abs-az-resource-group
+      addr_prefix: 10.0.1.0/24
       vnet: abs-az-vnet
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
     vars:
-      subnet-name: abs_az_ag_frontend_subnet
-      resource-group: abs-az-resource-group
+      subnet_name: abs_az_ag_frontend_subnet
+      resource_gp: abs-az-resource-group
       addr_prefix: 10.0.2.0/24
       vnet: abs-az-vnet
 
