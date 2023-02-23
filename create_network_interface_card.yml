@@ -1,5 +1,5 @@
 - name: Create a virtual Network Interface Card (NIC)
-  azure_rm_networkinterface:
+  azure.azcollection.azure_rm_networkinterface:
     name: "abs-az-nic"
     resource_group: "abs-az-resource-group"
     virtual_network: "abs-az-vnet"
