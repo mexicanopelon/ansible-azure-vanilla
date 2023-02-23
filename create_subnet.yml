@@ -4,6 +4,6 @@
     resource_group: abs-az-resource-group
     address_prefix: 10.0.1.0/24
     virtual_network: abs-az-vnet
-    register: subnet
+  register: subnet
 - debug:
     var: subnet
