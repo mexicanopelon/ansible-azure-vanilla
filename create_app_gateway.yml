@@ -21,7 +21,7 @@
       virtual_network: abs-az-vnet
     register: gateway_subnet
   - debug:
-      vars: gateway_subnet
+      var: gateway_subnet
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
@@ -32,7 +32,7 @@
       virtual_network: abs-az-vnet
     register: frontend_subnet
   - debug:
-      vars: frontend_subnet
+      var: frontend_subnet
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
