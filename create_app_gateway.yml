@@ -19,6 +19,7 @@
       resource_gp: abs-az-resource-group
       addr_prefix: 10.0.1.0/24
       vnet: abs-az-vnet
+      subnet_var: gateway_subnet
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
@@ -27,6 +28,7 @@
       resource_gp: abs-az-resource-group
       addr_prefix: 10.0.2.0/24
       vnet: abs-az-vnet
+      subnet_var: frontend_subnet
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml

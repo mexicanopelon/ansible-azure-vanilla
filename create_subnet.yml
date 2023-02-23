@@ -4,6 +4,6 @@
     resource_group: "{{ resource_gp }}"
     address_prefix: "{{ addr_prefix }}"
     virtual_network: "{{ vnet }}"
-  register: subnet
+  register: "{{ subnet_var }}"
 - debug:
-    var: subnet
+    var: "{{ subnet_var }}"
