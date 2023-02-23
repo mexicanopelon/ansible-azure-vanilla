@@ -19,9 +19,6 @@
       resource_group: abs-az-resource-group
       address_prefix: 10.0.1.0/24
       virtual_network: abs-az-vnet
-    register: gateway_subnet
-  - debug:
-      var: gateway_subnet
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
@@ -30,9 +27,6 @@
       resource_group: abs-az-resource-group
       address_prefix: 10.0.2.0/24
       virtual_network: abs-az-vnet
-    register: frontend_subnet
-  - debug:
-      var: frontend_subnet
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
