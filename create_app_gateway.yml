@@ -21,6 +21,12 @@
       vnet: abs-az-vnet
       subnet_var: gateway_subnet
 
+  - name: Get facts of gateway subnet
+    azure_rm_subnet_info:
+      resource_group: abs-az-resource-group
+      virtual_network_name: abs-az-vnet
+      name: abs_az_app_gateway_subnet
+
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
     vars:
@@ -29,6 +35,12 @@
       addr_prefix: 10.0.2.0/24
       vnet: abs-az-vnet
       subnet_var: frontend_subnet
+
+  - name: Get facts of frontend subnet
+    azure_rm_subnet_info:
+      resource_group: abs-az-resource-group
+      virtual_network_name: abs-az-vnet
+      name: abs_az_app_frontend_subnet
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
