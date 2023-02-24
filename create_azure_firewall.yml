@@ -37,15 +37,15 @@
   # - debug:
   #     var: firewall_public_ip.publicipaddresses[0].id 
 
-  - name: Create a standard firewall public IP address
-    azure.azcollection.azure_rm_publicipaddress_info:
-      name: abs-az-firewall-public-ip
-      resource_group: abs-az-resource-group
-      allocation_method: static
-      sku: standard
-    register:  firewall_public_ip
-  - debug:
-      var: firewall_public_ip
+  # - name: Create a standard firewall public IP address
+  #   azure.azcollection.azure_rm_publicipaddress_info:
+  #     name: abs-az-firewall-public-ip
+  #     resource_group: abs-az-resource-group
+  #     allocation_method: static
+  #     sku: standard
+  #   register:  firewall_public_ip
+  # - debug:
+  #     var: firewall_public_ip
 
   # - name: Create Azure Firewall
   #   azure.azcollection.azure_rm_azurefirewall:
