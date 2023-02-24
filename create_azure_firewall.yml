@@ -89,7 +89,7 @@
               source_addresses:
                 - '*'
               destination_addresses:
-                - "{{ dest_public_ip.publicipaddresses[0].ip_address }}"
+                - "{{ firewall_public_ip.publicipaddresses[0].ip_address }}"
               destination_ports:
                 - '443'
               protocols:
