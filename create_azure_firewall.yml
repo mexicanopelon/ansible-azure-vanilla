@@ -35,7 +35,7 @@
       name: abs-az-firewall-public-ip
     register:  firewall_public_ip
   - debug:
-      var: firewall_public_ip
+      var: firewall_public_ip.publicipaddresses[0].id 
 
   # - name: Create Azure Firewall
   #   azure.azcollection.azure_rm_azurefirewall:
@@ -94,8 +94,5 @@
   #         name: abs-net-rule-coll
   #     ip_configurations:
   #       - subnet: "{{ firewall_subnet.subnets[0].id }}"
-  #         public_ip_address: >-
-  #           /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/myResourceGroup
-  #           /providers/Microsoft.Network/publicIPAddresses/
-  #           myPublicIpAddress
+  #         public_ip_address: "{{ firewall_public_ip.publicipaddresses[0].id }}"
   #         name: abs-azureFirewallIpConfiguration
