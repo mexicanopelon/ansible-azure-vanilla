@@ -41,8 +41,8 @@
     azure.azcollection.azure_rm_publicipaddress_info:
       name: abs-az-firewall-public-ip
       resource_group: abs-az-resource-group
-      allocation_method: Static
-      sku: Standard
+      allocation_method: static
+      sku: standard
     register:  firewall_public_ip
   - debug:
       var: firewall_public_ip
