@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+#  vars_files:
+#  - vars/common.yml
+#  - vars/k8s.yml
+  tasks:
+  - name: Create resource group
+    include_tasks: create_resource_group.yml
+
+ - name: Create a linux app service plan
+  azure_rm_appserviceplan:
+    resource_group: abs-az-resource-group
+    name: abs-az-app-service-plan
+    location: eastus
+    sku: S1
+    is_linux: true
+    number_of_workers: 1

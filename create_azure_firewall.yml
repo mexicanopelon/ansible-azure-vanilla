@@ -6,6 +6,9 @@
 #  - vars/common.yml
 #  - vars/k8s.yml
   tasks:
+  - name: Create resource group
+    include_tasks: create_resource_group.yml
+
   - name: Create firewall subnet
     include_tasks: create_subnet.yml
     vars:
