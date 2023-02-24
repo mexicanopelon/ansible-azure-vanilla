@@ -27,7 +27,7 @@
       name: abs_az_app_gateway_subnet
     register: gateway_subnet
   - debug:
-      var: gateway_subnet
+      var: gateway_subnet.subnets.id
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
@@ -44,7 +44,7 @@
       name: abs_az_ag_frontend_subnet
     register: frontend_subnet
   - debug:
-      var: frontend_subnet
+      var: frontend_subnet.subnets.id
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
@@ -72,11 +72,11 @@
         capacity: 2
       gateway_ip_configurations:
         - subnet:
-            id: gateway_subnet.id
+            id: gateway_subnet.subnets.id
           name: abs_az_app_gateway_ip_config
       frontend_ip_configurations:
         - subnet:
-            id: frontend_subnet.id
+            id: frontend_subnet.subnets.id
           name: abs_az_gateway_frontend_ip_config
       frontend_ports:
         - port: 90
