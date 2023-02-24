@@ -10,7 +10,7 @@
     include_tasks: create_resource_group.yml
 
   - name: Create (or update) SQL Server
-    azure_rm_sqlserver:
+    azure.azcollection.azure_rm_sqlserver:
       resource_group: abs-az-resource-group
       name: abs-az-sql-db-server
       location: eastus
