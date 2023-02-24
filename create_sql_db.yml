@@ -9,11 +9,9 @@
   - name: Create resource group
     include_tasks: create_resource_group.yml
 
-  - name: Create a storage account
-    azure.azcollection.azure_rm_storageaccount:
+  - name: Create (or update) SQL Database
+    azure.azcollection.azure_rm_sqldatabase:
       resource_group: abs-az-resource-group
-      name: absazstorageacct
-      type: Standard_RAGRS
-      tags:
-        testing: testing
-        delete: on-exit
+      server_name: abs-az-sql-db-server
+      name: abs-az-sql-db
+      location: eastus
