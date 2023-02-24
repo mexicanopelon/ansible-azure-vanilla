@@ -43,7 +43,7 @@
     register:  firewall_public_ip
   - debug:
       var: firewall_public_ip
-      
+
   - name: Create Azure Firewall
     azure.azcollection.azure_rm_azurefirewall:
       resource_group: abs-az-resource-group
