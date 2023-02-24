@@ -21,7 +21,7 @@
       vnet: abs-az-vnet
 
   - name: Get gateway subnet facts
-    azure_rm_subnet_info:
+    azure.azcollection.azure_rm_subnet_info:
       resource_group: abs-az-resource-group
       virtual_network_name: abs-az-vnet
       name: abs_az_app_gateway_subnet
@@ -29,31 +29,30 @@
   - debug:
       var: gateway_subnet.subnets[0].id
 
-  - name: Create frontend subnet
-    include_tasks: create_subnet.yml
-    vars:
-      subnet_name: abs_az_ag_frontend_subnet
-      resource_gp: abs-az-resource-group
-      addr_prefix: 10.0.2.0/24
-      vnet: abs-az-vnet
+  # - name: Create frontend subnet
+  #   include_tasks: create_subnet.yml
+  #   vars:
+  #     subnet_name: abs_az_ag_frontend_subnet
+  #     resource_gp: abs-az-resource-group
+  #     addr_prefix: 10.0.2.0/24
+  #     vnet: abs-az-vnet
 
-  - name: Get frontend subnet facts
-    azure_rm_subnet_info:
-      resource_group: abs-az-resource-group
-      virtual_network_name: abs-az-vnet
-      name: abs_az_ag_frontend_subnet
-    register: frontend_subnet
-  - debug:
-      var: frontend_subnet.subnets[0].id
-  - debug:
-      msg: "Front subnet id is {{ frontend_subnet.subnets[0].id }}"
+  # - name: Get frontend subnet facts
+  #   azure_rm_subnet_info:
+  #     resource_group: abs-az-resource-group
+  #     virtual_network_name: abs-az-vnet
+  #     name: abs_az_ag_frontend_subnet
+  #   register: frontend_subnet
+  # - debug:
+  #     var: frontend_subnet.subnets[0].id
+  # - debug:
+  #     msg: "Front subnet id is {{ frontend_subnet.subnets[0].id }}"
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
     vars:
-      name: abs-az-frontend-public-ip
+      public_ip_name: abs-az-frontend-public-ip
       resource_group: abs-az-resource-group
-      allocation_method: Static
 
   # # - name: Create a Network Security Group (NSG)
   # #   include_tasks: create_network_security_group.yml
