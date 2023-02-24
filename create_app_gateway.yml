@@ -27,7 +27,7 @@
       name: abs_az_app_gateway_subnet
     register: gateway_subnet
   - debug:
-      var: gateway_subnet.subnets[0].id.value
+      var: gateway_subnet.subnets[0].id
 
   - name: Create frontend subnet
     include_tasks: create_subnet.yml
@@ -44,7 +44,7 @@
       name: abs_az_ag_frontend_subnet
     register: frontend_subnet
   - debug:
-      var: frontend_subnet.subnets[0].id.value
+      var: frontend_subnet.subnets[0].id
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml

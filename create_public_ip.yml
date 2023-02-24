@@ -7,4 +7,8 @@
 
 - name: Print Public IP of VM
   debug:
-    msg: "The public IP of VM is output_ip_address.state.ip_address."
+    var: output_ip_address.state.ip_address
+
+- name: Print Public IP of VM
+  debug:
+    msg: "The public IP of VM is {{ output_ip_address.state.ip_address }}."
