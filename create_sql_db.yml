@@ -9,6 +9,14 @@
   - name: Create resource group
     include_tasks: create_resource_group.yml
 
+  - name: Create (or update) SQL Server
+    azure_rm_sqlserver:
+      resource_group: abs-az-resource-group
+      name: abs-az-sql-db-server
+      location: eastus
+      admin_username: abs_user
+      admin_password: Testpasswordxyz12!
+
   - name: Create (or update) SQL Database
     azure.azcollection.azure_rm_sqldatabase:
       resource_group: abs-az-resource-group
