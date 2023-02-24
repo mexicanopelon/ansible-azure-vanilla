@@ -78,7 +78,7 @@
           name: abs_az_app_gateway_ip_config
       frontend_ip_configurations:
         - subnet:
-            id: "{{ frontend_subnet.subnets[0].id }}"
+            id: "{{ gateway_subnet.subnets[0].id }}"
           name: abs_az_gateway_frontend_ip_config
       frontend_ports:
         - port: 90
