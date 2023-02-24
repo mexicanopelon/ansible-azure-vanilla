@@ -49,10 +49,10 @@
   #     msg: "Front subnet id is {{ frontend_subnet.subnets[0].id }}"
 
   - name: Create a frontend public IP address
-    include_tasks: create_public_ip.yml
-    vars:
-      public_ip_name: abs-az-frontend-public-ip
+    azure.azcollection.azure_rm_publicipaddress:
+      name: abs-az-frontend-public-ip
       resource_group: abs-az-resource-group
+      allocation_method: Static
 
   # # - name: Create a Network Security Group (NSG)
   # #   include_tasks: create_network_security_group.yml
