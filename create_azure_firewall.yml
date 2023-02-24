@@ -23,76 +23,86 @@
   - debug:
       var: firewall_subnet.subnets[0].id
 
-  - name: Create a firewall public IP address
-    include_tasks: create_public_ip.yml
-    vars:
-      public_ip_name: abs-az-firewall-public-ip
-      resource_group: abs-az-resource-group
+  # - name: Create a firewall public IP address
+  #   include_tasks: create_public_ip.yml
+  #   vars:
+  #     public_ip_name: abs-az-firewall-public-ip
+  #     resource_group: abs-az-resource-group
 
-  - name: Get firewall public IP address info
+  # - name: Get firewall public IP address info
+  #   azure.azcollection.azure_rm_publicipaddress_info:
+  #     resource_group: abs-az-resource-group
+  #     name: abs-az-firewall-public-ip
+  #   register:  firewall_public_ip
+  # - debug:
+  #     var: firewall_public_ip.publicipaddresses[0].id 
+
+  - name: Create a standard firewall public IP address
     azure.azcollection.azure_rm_publicipaddress_info:
-      resource_group: abs-az-resource-group
       name: abs-az-firewall-public-ip
+      resource_group: abs-az-resource-group
+      allocation_method: Static
+      sku: standard
     register:  firewall_public_ip
   - debug:
-      var: firewall_public_ip.publicipaddresses[0].id 
+      var: firewall_public_ip
 
-  - name: Create Azure Firewall
-    azure.azcollection.azure_rm_azurefirewall:
-      resource_group: abs-az-resource-group
-      name: abs-azure-firewall
-      tags:
-        key1: abs-firewall
-      application_rule_collections:
-        - priority: 110
-          action: deny
-          rules:
-            - name: abs-rule1
-              description: Deny inbound rule
-              source_addresses:
-                - 216.58.216.164
-                - 10.0.0.0/24
-              protocols:
-                - type: https
-                  port: '443'
-              target_fqdns:
-                - www.abs-test.com
-          name: abs-app-rule-coll
-      nat_rule_collections:
-        - priority: 112
-          action: dnat
-          rules:
-            - name: abs-DNAT-HTTPS-traffic
-              description: D-NAT all outbound web traffic for inspection
-              source_addresses:
-                - '*'
-              destination_addresses:
-                - 1.2.3.4
-              destination_ports:
-                - '443'
-              protocols:
-                - tcp
-              translated_address: 1.2.3.5
-              translated_port: '8443'
-          name: abs-nat-rule-coll
-      network_rule_collections:
-        - priority: 112
-          action: deny
-          rules:
-            - name: abs-L4-traffic
-              description: Block traffic based on source IPs and ports
-              protocols:
-                - tcp
-              source_addresses:
-                - 192.168.1.1-192.168.1.12
-                - 10.1.4.12-10.1.4.255
-              destination_addresses:
-                - '*'
-              destination_ports:
-                - 443-444
-                - '8443'
-          name: abs-net-rule-coll
-      ip_configurations:
-        - subnet: "{{ firewall_subnet.subnets[0].id }}"
-          public_ip_address: "{{ firewall_public_ip.publicipaddresses[0].id }}"
-          name: abs-azureFirewallIpConfiguration
+  # - name: Create Azure Firewall
+  #   azure.azcollection.azure_rm_azurefirewall:
+  #     resource_group: abs-az-resource-group
+  #     name: abs-azure-firewall
+  #     tags:
+  #       key1: abs-firewall
+  #     application_rule_collections:
+  #       - priority: 110
+  #         action: deny
+  #         rules:
+  #           - name: abs-rule1
+  #             description: Deny inbound rule
+  #             source_addresses:
+  #               - 216.58.216.164
+  #               - 10.0.0.0/24
+  #             protocols:
+  #               - type: https
+  #                 port: '443'
+  #             target_fqdns:
+  #               - www.abs-test.com
+  #         name: abs-app-rule-coll
+  #     nat_rule_collections:
+  #       - priority: 112
+  #         action: dnat
+  #         rules:
+  #           - name: abs-DNAT-HTTPS-traffic
+  #             description: D-NAT all outbound web traffic for inspection
+  #             source_addresses:
+  #               - '*'
+  #             destination_addresses:
+  #               - 1.2.3.4
+  #             destination_ports:
+  #               - '443'
+  #             protocols:
+  #               - tcp
+  #             translated_address: 1.2.3.5
+  #             translated_port: '8443'
+  #         name: abs-nat-rule-coll
+  #     network_rule_collections:
+  #       - priority: 112
+  #         action: deny
+  #         rules:
+  #           - name: abs-L4-traffic
+  #             description: Block traffic based on source IPs and ports
+  #             protocols:
+  #               - tcp
+  #             source_addresses:
+  #               - 192.168.1.1-192.168.1.12
+  #               - 10.1.4.12-10.1.4.255
+  #             destination_addresses:
+  #               - '*'
+  #             destination_ports:
+  #               - 443-444
+  #               - '8443'
+  #         name: abs-net-rule-coll
+  #     ip_configurations:
+  #       - subnet: "{{ firewall_subnet.subnets[0].id }}"
+  #         public_ip_address: "{{ firewall_public_ip.publicipaddresses[0].id }}"
+  #         name: abs-azureFirewallIpConfiguration
