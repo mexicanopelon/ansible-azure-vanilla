@@ -44,6 +44,21 @@
   - debug:
       var: firewall_public_ip
 
+
+  - name: Create a destination public IP address
+    azure.azcollection.azure_rm_publicipaddress:
+      name: abs-az-dest-public-ip
+      resource_group: abs-az-resource-group
+      allocation_method: Static
+
+  - name: Get firewall public IP address info
+    azure.azcollection.azure_rm_publicipaddress_info:
+      name: abs-az-dest-public-ip
+      resource_group: abs-az-resource-group
+    register:  dest_public_ip
+  - debug:
+      var: dest_public_ip
+
   - name: Create Azure Firewall
     azure.azcollection.azure_rm_azurefirewall:
       resource_group: abs-az-resource-group
@@ -74,7 +89,7 @@
               source_addresses:
                 - '*'
               destination_addresses:
-                - 1.2.3.4
+                - "{{ dest_public_ip.publicipaddresses[0].ip_address }}"
               destination_ports:
                 - '443'
               protocols:
