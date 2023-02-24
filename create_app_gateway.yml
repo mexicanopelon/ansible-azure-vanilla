@@ -45,6 +45,8 @@
     register: frontend_subnet
   - debug:
       var: frontend_subnet.subnets[0].id
+  - debug:
+      msg: "Front subnet id is {{ frontend_subnet.subnets[0].id }}"
 
   - name: Create a frontend public IP address
     include_tasks: create_public_ip.yml
