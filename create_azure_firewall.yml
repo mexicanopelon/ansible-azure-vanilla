@@ -9,7 +9,7 @@
   - name: Create firewall subnet
     include_tasks: create_subnet.yml
     vars:
-      subnet_name: abs_az_firewall_subnet
+      subnet_name: AzureFirewallSubnet
       resource_gp: abs-az-resource-group
       addr_prefix: 10.0.3.0/24
       vnet: abs-az-vnet
@@ -31,7 +31,7 @@
 
   - name: Create a standard firewall public IP address
     azure.azcollection.azure_rm_publicipaddress:
-      name: AzureFirewallSubnet
+      name: abs-az-firewall-public-ip
       resource_group: abs-az-resource-group
       allocation_method: Static
       sku: Standard
