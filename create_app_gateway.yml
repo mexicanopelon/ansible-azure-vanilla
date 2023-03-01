@@ -7,13 +7,13 @@
 #  - vars/k8s.yml
   tasks:
   - name: Create resource group
-    include_tasks: create_resource_group.yml
+    include_tasks: tasks/create_resource_group.yml
 
   - name: Create a Virtual Network (VNET)
     include_tasks: create_virtual_network.yml
 
   - name: Create gateway subnet
-    include_tasks: create_subnet.yml
+    include_tasks: tasks/create_subnet.yml
     vars:
       subnet_name: abs_az_app_gateway_subnet
       resource_gp: abs-az-resource-group

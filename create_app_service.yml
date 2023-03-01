@@ -7,7 +7,7 @@
 #  - vars/k8s.yml
   tasks:
   - name: Create resource group
-    include_tasks: create_resource_group.yml
+    include_tasks: tasks/create_resource_group.yml
 
   - name: Create a linux app service plan
     azure.azcollection.azure_rm_appserviceplan:
