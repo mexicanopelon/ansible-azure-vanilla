@@ -7,10 +7,10 @@
 #  - vars/k8s.yml
   tasks:
   - name: Create resource group
-    include_tasks: create_resource_group.yml
+    include_tasks: tasks/create_resource_group.yml
 
   - name: Create firewall subnet
-    include_tasks: create_subnet.yml
+    include_tasks: tasks/create_subnet.yml
     vars:
       subnet_name: AzureFirewallSubnet
       resource_gp: abs-az-resource-group
@@ -45,7 +45,7 @@
       resource_group: abs-az-resource-group
     register:  firewall_public_ip
   - debug:
-      var: firewall_public_ip
+      var: firewall_public_ip 
 
   - name: Create Azure Firewall
     azure.azcollection.azure_rm_azurefirewall:

@@ -1,0 +1,17 @@
+Traceback (most recent call last):  File \"/Users/cdelapaz/.ansible/tmp/ansible-tmp-1677687032.703701-674-105955981366712/AnsiballZ_azure_rm_resourcegroup.py\", line 107, in <module>    _ansiballz_main()
+  File \"/Users/cdelapaz/.ansible/tmp/ansible-tmp-1677687032.703701-674-105955981366712/AnsiballZ_azure_rm_resourcegroup.py\", line 99, in _ansiballz_main
+    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)
+  File \"/Users/cdelapaz/.ansible/tmp/ansible-tmp-1677687032.703701-674-105955981366712/AnsiballZ_azure_rm_resourcegroup.py\", line 47, in invoke_module
+    runpy.run_module(mod_name='ansible_collections.azure.azcollection.plugins.modules.azure_rm_resourcegroup', init_globals=dict(_module_fqn='ansible_collections.azure.azcollection.plugins.modules.azure_rm_resourcegroup', _modlib_path=modlib_path),
+  File \"<frozen runpy>\", line 226, in run_module
+  File \"<frozen runpy>\", line 98, in _run_module_code
+  File \"<frozen runpy>\", line 88, in _run_code
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/modules/azure_rm_resourcegroup.py\", line 286, in <module>
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/modules/azure_rm_resourcegroup.py\", line 282, in main
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/modules/azure_rm_resourcegroup.py\", line 162, in __init__
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/module_utils/azure_rm_common.py\", line 472, in __init__
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/modules/azure_rm_resourcegroup.py\", line 178, in exec_module
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/module_utils/azure_rm_common.py\", line 1070, in rm_client
+  File \"/var/folders/tj/35b6fv7s6mld8zhbq69135mw0000gn/T/ansible_azure.azcollection.azure_rm_resourcegroup_payload_8v_yco0k/ansible_azure.azcollection.azure_rm_resourcegroup_payload.zip/ansible_collections/azure/azcollection/plugins/module_utils/azure_rm_common.py\", line 877, in get_mgmt_svc_client
+AttributeError: module 'inspect' has no attribute 'getargspec'. Did you mean: 'getargs'?
+",

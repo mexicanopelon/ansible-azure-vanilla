@@ -3,3 +3,6 @@
     name: abs-az-vnet
     resource_group: abs-az-resource-group
     address_prefixes: 10.0.0.0/16
+  register: vnet
+- debug:
+    var: vnet.id

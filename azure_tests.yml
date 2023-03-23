@@ -1,0 +1,233 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+#  vars_files:
+#  - vars/common.yml
+#  - vars/k8s.yml
+  vars:
+    cidr:  10.6.100.0/16
+    snet: 10.5.100.0/24
+    some_string: "/subscriptions/2807648b-f971-48cc-add9-0af5212b006d/resourceGroups/rg-clops-dev/providers/Microsoft.Web/hostingEnvironments/ase-clops-dev"
+    nrcaseoutput:
+      stdout: |
+        [
+          {
+            "action": {
+              "type": "Allow"
+            },
+            "name": "arc-ASE",
+            "priority": 200,
+            "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
+            "rules": [
+              {
+                "description": null,
+                "destinationAddresses": [],
+                "fqdnTags": [
+                  "AppServiceEnvironment",
+                  "WindowsUpdate"
+                ],
+                "name": "ASE-out",
+                "protocols": [
+                  {
+                    "port": 80,
+                    "protocolType": "Http"
+                  },
+                  {
+                    "port": 443,
+                    "protocolType": "Https"
+                  },
+                  {
+                    "port": 1433,
+                    "protocolType": "Mssql"
+                  }
+                ],
+                "ruleType": "ApplicationRule",
+                "sourceAddresses": [],
+                "sourceIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-prod",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-prod",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-dev"
+                ],
+                "targetFqdns": [],
+                "targetUrls": [],
+                "terminateTls": false,
+                "webCategories": []
+              }
+            ]
+          },
+          {
+            "action": {
+              "type": "Allow"
+            },
+            "name": "nrc-ASE",
+            "priority": 100,
+            "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
+            "rules": [
+              {
+                "description": null,
+                "destinationAddresses": [
+                  "*"
+                ],
+                "destinationFqdns": [],
+                "destinationIpGroups": [],
+                "destinationPorts": [
+                  "123"
+                ],
+                "ipProtocols": [
+                  "UDP"
+                ],
+                "name": "NTP-out",
+                "ruleType": "NetworkRule",
+                "sourceAddresses": [],
+                "sourceIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-prod",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-prod"
+                ]
+              },
+              {
+                "description": null,
+                "destinationAddresses": [
+                  "AzureMonitor"
+                ],
+                "destinationFqdns": [],
+                "destinationIpGroups": [],
+                "destinationPorts": [
+                  "80",
+                  "443",
+                  "12000"
+                ],
+                "ipProtocols": [
+                  "TCP"
+                ],
+                "name": "AzureMonitor-out",
+                "ruleType": "NetworkRule",
+                "sourceAddresses": [],
+                "sourceIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-prod",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-prod"
+                ]
+              },
+              {
+                "description": null,
+                "destinationAddresses": [
+                  "*"
+                ],
+                "destinationFqdns": [],
+                "destinationIpGroups": [],
+                "destinationPorts": [
+                  "12000"
+                ],
+                "ipProtocols": [
+                  "TCP",
+                  "UDP"
+                ],
+                "name": "ASEHealth-out",
+                "ruleType": "NetworkRule",
+                "sourceAddresses": [],
+                "sourceIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-prod",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-fselect-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-prod"
+                ]
+              },
+              {
+                "description": null,
+                "destinationAddresses": [],
+                "destinationFqdns": [],
+                "destinationIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-abswom-ase-prod"
+                ],
+                "destinationPorts": [
+                  "80",
+                  "443"
+                ],
+                "ipProtocols": [
+                  "TCP"
+                ],
+                "name": "AppGW-in",
+                "ruleType": "NetworkRule",
+                "sourceAddresses": [
+                  "104.215.127.107",
+                  "10.73.252.128/26"
+                ],
+                "sourceIpGroups": []
+              },
+              {
+                "description": null,
+                "destinationAddresses": [
+                  "192.168.1.2"
+                ],
+                "destinationFqdns": [],
+                "destinationIpGroups": [],
+                "destinationPorts": [
+                  "80"
+                ],
+                "ipProtocols": [
+                  "ICMP"
+                ],
+                "name": "Jeff-test",
+                "ruleType": "NetworkRule",
+                "sourceAddresses": [],
+                "sourceIpGroups": [
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-faptsta-pep-dev",
+                  "/subscriptions/82979af7-0cd6-4a8f-a3cf-82ff795d0139/resourceGroups/rg-core-azfw/providers/Microsoft.Network/ipGroups/ipg-faptsta-pep-prod"
+                ]
+              }
+            ]
+          }
+        ]
+  tasks:
+  # This should return a list of the rules dictionaries
+#   - set_fact:
+#       listOfRulesDictionary: "{{ nrcaseoutput.stdout | from_json | json_query('items[].rules.items[]') | list }}"
+# #      listOfRulesDictionary: "{{ nrcaseoutput.stdout|from_json|json_query('items[].rules') }}"
+
+  - debug:
+      msg: "{{ nrcaseoutput.stdout | from_json | json_query('[*].rules[?ruleType==''NetworkRule'']') }}"
+#  msg: "{{ nrcaseoutput.stdout | from_json | json_query('[*].rules[?name==''Jeff-test''].ruleType') }}"
+#      listOfRulesDictionary: "{{ nrcaseoutput.stdout|from_json|json_query('items[].rules') }}"
+
+  # - debug:
+  #     var: listOfRulesDictionary
+
+  # - set_fact:
+  #     var: iam:ListGroupsForUser
+
+  # - name: test 1
+  #   ansible.builtin.debug:
+  #     msg: "{{ cidr.split('.').0 + '.' + cidr.split('.').1 + '.' + (((cidr.split('.').2 | int) + 1) | string) + '.' + cidr.split('.').3}}"
+
+  # - name: test 2
+  #   ansible.builtin.debug:
+  #     msg: "{{ cidr.split('.', 2) }}"
+
+  # - name: test 2
+  #   ansible.builtin.debug:
+  #     msg: "{{ some_string.split('/').pop() }}"
+
+  # - name: ipaddr module
+  #   ansible.builtin.debug:
+  #     msg: "{{ snet | ansible.utils.ipsubnet(20, 1) }}"
+
+  # - name: Print all available facts
+  #   ansible.builtin.debug:
+  #     var: ansible_facts
+
+  # - name:  Print out user running Ansible playbook
+  #   ansible.builtin.debug:
+  #     msg: "{{ ansible_user_id }}"
+
+  # - name: create random but idempotent password
+  #   ansible.builtin.set_fact:
+  #     password: "{{ lookup('ansible.builtin.password', '/dev/null', seed=inventory_hostname) }}"
+  #   register: passwd
+  # - debug:
+  #     var: passwd
